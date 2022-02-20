@@ -33,6 +33,8 @@
 	];
 
 	function add(input) {
+    if (input.value.length < 1) return;
+    
 		const todo = {
 			id: uid++,
 			done: false,
@@ -93,9 +95,7 @@
 </div>
 
 <style>
-  :focus {
-    outline: none
-  }
+  :focus { outline: none }
 
 	.board {
 		display: grid;
@@ -117,7 +117,6 @@
     border-radius: 12px;
     border: 1px solid rgba(209, 213, 219, 0.3);
 	}
-
 
 	h2 {
 		font-size: 2em;
@@ -165,7 +164,5 @@
 		cursor: pointer;
 	}
 
-	label:hover button {
-		opacity: 1;
-	}
+	label:hover button { opacity: 1 }
 </style>
