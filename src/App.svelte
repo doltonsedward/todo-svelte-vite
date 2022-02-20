@@ -2,23 +2,27 @@
 	import { quintOut } from 'svelte/easing';
 	import { crossfade } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
+	import ThemePicker from "./lib/ThemePicker.svelte";
 
-  let uid = 1;
+	let uid = 1;
 
-  let todos = JSON.parse(localStorage.getItem("todos"))
-  let dataTodos = [
-      { id: uid++, done: false, description: 'eat' },
-      { id: uid++, done: true,  description: 'buy some milk' },
-      { id: uid++, done: false, description: 'mow the lawn' },
-      { id: uid++, done: false, description: 'feed the turtle' },
-    ];
+	let todos = JSON.parse(localStorage.getItem("todos"))
+	let dataTodos = [
+		{ id: uid++, done: false, description: 'eat' },
+		{ id: uid++, done: true,  description: 'buy some milk' },
+		{ id: uid++, done: false, description: 'mow the lawn' },
+		{ id: uid++, done: false, description: 'feed the turtle' },
+		];
 
-  if (!todos) {
-    localStorage.setItem("todos", JSON.stringify(dataTodos))
-    location.reload()
-  }
+	if (!todos) {
+		localStorage.setItem("todos", JSON.stringify(dataTodos))
+		location.reload()
+	}
 
-  const setTodos = (todos) => localStorage.setItem("todos", JSON.stringify(todos))
+	/**
+	* @param {[]} todos
+	*/
+  	const setTodos = (todos) => localStorage.setItem("todos", JSON.stringify(todos))
 
 	const [send, receive] = crossfade({
 		duration: d => Math.sqrt(d * 200),
@@ -38,6 +42,9 @@
 		}
 	});
 
+	/**
+	* @param {any} input
+	*/
 	function add(input) {
     if (input.value.length < 1) return;
     
@@ -66,6 +73,8 @@
 </script>
 
 <div class="board">
+	<ThemePicker />
+	
 	<input
 		placeholder="what needs to be done?"
 		on:keydown={e => e.key === 'Enter' && add(e.target)}
@@ -104,7 +113,7 @@
 </div>
 
 <style>
-  :focus { outline: none }
+  	:focus { outline: none }
 
 	.board {
 		display: grid;
@@ -115,16 +124,16 @@
 	}
 
 	.board > input {
-    font-family: "Poppins";
-    margin-top: 12px;
-    padding: 0.5em 1em;
+		font-family: "Poppins";
+		margin-top: 12px;
+		padding: 0.5em 1em;
 		font-size: 1.4em;
 		grid-column: 1/3;
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
-    background-color: rgba(255, 255, 255, 0.75);
-    border-radius: 12px;
-    border: 1px solid rgba(209, 213, 219, 0.3);
+		backdrop-filter: blur(16px) saturate(180%);
+		-webkit-backdrop-filter: blur(16px) saturate(180%);
+		background-color: var(--neumorphism-bg);
+		border-radius: 12px;
+		border: 1px solid var(--neumorphism-border-color);
 	}
 
 	h2 {
@@ -142,20 +151,20 @@
 		margin: 0 0 0.5em 0;
 		border-radius: 2px;
 		user-select: none;
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
-    background-color: rgba(255, 255, 255, 0.75);
-    border-radius: 12px;
-    border: 1px solid rgba(209, 213, 219, 0.3);
+		backdrop-filter: blur(16px) saturate(180%);
+		-webkit-backdrop-filter: blur(16px) saturate(180%);
+		background-color: var(--neumorphism-bg);
+		border-radius: 12px;
+		border: 1px solid var(--neumorphism-border-color);
 		color: #333;
 	}
 
 	.done {
 		border: 1px solid hsl(240, 8%, 90%);
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
-    background-color: rgba(44, 248, 160, 0.5);
-    border: 1px solid rgba(200, 247, 179, 0.75)
+		backdrop-filter: blur(16px) saturate(180%);
+		-webkit-backdrop-filter: blur(16px) saturate(180%);
+		background-color: var(--success-bg);
+		border: 1px solid var(--neumorphism-border-color);
 	}
 
 	button {
