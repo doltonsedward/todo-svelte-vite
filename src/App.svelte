@@ -3,6 +3,25 @@
 	import { crossfade } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
 
+  let todos = JSON.parse(localStorage.getItem("todos"))
+  let dataTodos = [
+      { id: 1, done: false, description: 'write some docs' },
+      { id: 2, done: false, description: 'start writing blog post' },
+      { id: 3, done: true,  description: 'buy some milk' },
+      { id: 4, done: false, description: 'mow the lawn' },
+      { id: 5, done: false, description: 'feed the turtle' },
+      { id: 6, done: false, description: 'fix some bugs' },
+    ];
+
+  if (!todos) {
+    localStorage.setItem("todos", JSON.stringify(dataTodos))
+    todos = JSON.parse(localStorage.getItem("todos"))
+  }
+
+  function setTodos(todos) {
+    localStorage.setItem("todos", JSON.stringify(todos))
+  }
+
 	const [send, receive] = crossfade({
 		duration: d => Math.sqrt(d * 200),
 
@@ -23,15 +42,6 @@
 
 	let uid = 1;
 
-	let todos = [
-		{ id: uid++, done: false, description: 'write some docs' },
-		{ id: uid++, done: false, description: 'start writing blog post' },
-		{ id: uid++, done: true,  description: 'buy some milk' },
-		{ id: uid++, done: false, description: 'mow the lawn' },
-		{ id: uid++, done: false, description: 'feed the turtle' },
-		{ id: uid++, done: false, description: 'fix some bugs' },
-	];
-
 	function add(input) {
     if (input.value.length < 1) return;
     
@@ -42,17 +52,20 @@
 		};
 
 		todos = [todo, ...todos];
+    setTodos(todos)
 		input.value = '';
 	}
 
 	function remove(todo) {
 		todos = todos.filter(t => t !== todo);
+    setTodos(todos)
 	}
 
 	function mark(todo, done) {
 		todo.done = done;
 		remove(todo);
 		todos = todos.concat(todo);
+    setTodos(todos)
 	}
 </script>
 
