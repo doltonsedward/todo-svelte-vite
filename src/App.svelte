@@ -3,24 +3,22 @@
 	import { crossfade } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
 
+  let uid = 1;
+
   let todos = JSON.parse(localStorage.getItem("todos"))
   let dataTodos = [
-      { id: 1, done: false, description: 'write some docs' },
-      { id: 2, done: false, description: 'start writing blog post' },
-      { id: 3, done: true,  description: 'buy some milk' },
-      { id: 4, done: false, description: 'mow the lawn' },
-      { id: 5, done: false, description: 'feed the turtle' },
-      { id: 6, done: false, description: 'fix some bugs' },
+      { id: uid++, done: false, description: 'eat' },
+      { id: uid++, done: true,  description: 'buy some milk' },
+      { id: uid++, done: false, description: 'mow the lawn' },
+      { id: uid++, done: false, description: 'feed the turtle' },
     ];
 
   if (!todos) {
     localStorage.setItem("todos", JSON.stringify(dataTodos))
-    todos = JSON.parse(localStorage.getItem("todos"))
+    location.reload()
   }
 
-  function setTodos(todos) {
-    localStorage.setItem("todos", JSON.stringify(todos))
-  }
+  const setTodos = (todos) => localStorage.setItem("todos", JSON.stringify(todos))
 
 	const [send, receive] = crossfade({
 		duration: d => Math.sqrt(d * 200),
@@ -39,8 +37,6 @@
 			};
 		}
 	});
-
-	let uid = 1;
 
 	function add(input) {
     if (input.value.length < 1) return;
