@@ -93,7 +93,10 @@
 </div>
 
 <style>
+  @import "https://fonts.googleapis.com/css?family=Poppins";
+  
 	.board {
+    font-family: "Poppins", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		grid-gap: 1em;
