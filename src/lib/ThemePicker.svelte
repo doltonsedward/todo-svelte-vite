@@ -7,7 +7,6 @@
 	/**
 	* @param {boolean} isDark
 	*/
-
 	function setDarkTheme(isDark) {
 		if (isDark) {
 			localStorage.setItem("theme", "dark")
@@ -19,7 +18,13 @@
 	}
 </script>
 
-<div>
-	<div on:click={()=> setDarkTheme(false)}>Light</div>
-	<div on:click={()=> setDarkTheme(true)}>Dark</div>
+<div class="container">
+	<button on:click={()=> setDarkTheme(false)}>Light</button>
+	<button on:click={()=> setDarkTheme(true)}>Dark</button>
 </div>
+
+<style>
+	.container {
+		display: flex;
+	}
+</style>
