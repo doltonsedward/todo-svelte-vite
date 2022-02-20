@@ -68,7 +68,7 @@
 				out:send="{{key: todo.id}}"
 				animate:flip
 			>
-				<input type=checkbox on:change={() => mark(todo, true)}>
+				<input type=checkbox on:change={() => mark(todo, true)} />
 				{todo.description}
 				<button on:click="{() => remove(todo)}">remove</button>
 			</label>
@@ -106,13 +106,16 @@
 	}
 
 	.board > input {
+    font-family: "Poppins";
     margin-top: 12px;
-    padding: 5px 12px;
+    padding: 0.5em 1em;
 		font-size: 1.4em;
 		grid-column: 1/3;
-    border: none;
-    border-radius: 8px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, .3);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0.75);
+    border-radius: 12px;
+    border: 1px solid rgba(209, 213, 219, 0.3);
 	}
 
 
@@ -127,7 +130,7 @@
     display: block;
 		position: relative;
 		line-height: 1.2;
-		padding: 0.5em 2.5em 0.5em 2em;
+		padding: 0.5em 2.5em 0.5em 0.5em;
 		margin: 0 0 0.5em 0;
 		border-radius: 2px;
 		user-select: none;
@@ -137,13 +140,6 @@
     border-radius: 12px;
     border: 1px solid rgba(209, 213, 219, 0.3);
 		color: #333;
-	}
-
-	input[type="checkbox"] {
-		position: absolute;
-		left: 0.5em;
-		top: 0.6em;
-		margin: 0;
 	}
 
 	.done {
