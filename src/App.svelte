@@ -93,10 +93,11 @@
 </div>
 
 <style>
-  @import "https://fonts.googleapis.com/css?family=Poppins";
-  
+  :focus {
+    outline: none
+  }
+
 	.board {
-    font-family: "Poppins", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		grid-gap: 1em;
@@ -105,9 +106,15 @@
 	}
 
 	.board > input {
+    margin-top: 12px;
+    padding: 5px 12px;
 		font-size: 1.4em;
 		grid-column: 1/3;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .3);
 	}
+
 
 	h2 {
 		font-size: 2em;
@@ -124,8 +131,11 @@
 		margin: 0 0 0.5em 0;
 		border-radius: 2px;
 		user-select: none;
-		border: 1px solid hsl(240, 8%, 70%);
-		background-color:hsl(240, 8%, 93%);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0.75);
+    border-radius: 12px;
+    border: 1px solid rgba(209, 213, 219, 0.3);
 		color: #333;
 	}
 
