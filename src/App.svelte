@@ -54,13 +54,13 @@
 	}
 </script>
 
-<div class='board'>
+<div class="board">
 	<input
 		placeholder="what needs to be done?"
 		on:keydown={e => e.key === 'Enter' && add(e.target)}
 	>
 
-	<div class='left'>
+	<div class="left">
 		<h2>todo</h2>
 		{#each todos.filter(t => !t.done) as todo (todo.id)}
 			<label
@@ -75,7 +75,7 @@
 		{/each}
 	</div>
 
-	<div class='right'>
+	<div class="right">
 		<h2>done</h2>
 		{#each todos.filter(t => t.done) as todo (todo.id)}
 			<label
@@ -144,7 +144,10 @@
 
 	.done {
 		border: 1px solid hsl(240, 8%, 90%);
-		background-color:hsl(240, 8%, 98%);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(44, 248, 160, 0.5);
+    border: 1px solid rgba(200, 247, 179, 0.75)
 	}
 
 	button {
