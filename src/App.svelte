@@ -2,6 +2,8 @@
 	import { quintOut } from 'svelte/easing';
 	import { crossfade } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
+	import InputUser from "./lib/input/InputUser.svelte";
+	import InputCheckbox from "./lib/input/InputCheckbox.svelte";
 	import ThemePicker from "./lib/ThemePicker.svelte";
 
 	let uid = 1;
@@ -49,7 +51,7 @@
     if (input.value.length < 1) return;
     
 		const todo = {
-			id: uid++,
+			id: Math.floor(Math.random() * 10000),
 			done: false,
 			description: input.value
 		};
@@ -84,10 +86,7 @@
 <div class="board">
 	<ThemePicker on:getTheme={handleGetTheme} />
 	
-	<input
-		placeholder="what needs to be done?"
-		on:keydown={e => e.key === 'Enter' && add(e.target)}
-	>
+	<InputUser on:keydown={e => e.key === 'Enter' && add(e.target)} />
 
 	<div class="section-left">
 		<h2>todo</h2>
@@ -97,8 +96,8 @@
 				out:send="{{key: todo.id}}"
 				animate:flip
 			>
-				<input type=checkbox on:change={() => mark(todo, true)} />
-				{todo.description}
+				<InputCheckbox isChecked={false} on:change={() => mark(todo, true)} />
+				<span>{todo.description}</span>
 				<button on:click="{() => remove(todo)}">
 					{#if isDarkTheme}
 						<img src="images/trash-light.png" alt="delete" />
@@ -119,8 +118,8 @@
 				out:send="{{key: todo.id}}"
 				animate:flip
 			>
-				<input type=checkbox checked on:change={() => mark(todo, false)}>
-				{todo.description}
+				<InputCheckbox isChecked on:change={() => mark(todo, false)} />
+				<span>{todo.description}</span>
 				<button on:click="{() => remove(todo)}">
 					{#if isDarkTheme}
 						<img src="images/trash-light.png" alt="delete" />
@@ -134,34 +133,12 @@
 </div>
 
 <style>
-  	:focus { outline: none }
-	::placeholder {
-		opacity: 0.5;
-	}
-	  
-	::placeholder, .board > input, label {
-		color: var(--text-color);
-	}
-
 	.board {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		grid-gap: 1em;
 		max-width: 36em;
 		margin: 0 auto;
-	}
-
-	.board > input {
-		font-family: "Poppins";
-		margin-top: 12px;
-		padding: 0.5em 1em;
-		font-size: 1.4em;
-		grid-column: 1/3;
-		backdrop-filter: blur(16px) saturate(180%);
-		-webkit-backdrop-filter: blur(16px) saturate(180%);
-		background-color: var(--neumorphism-bg);
-		border-radius: 12px;
-		border: 1px solid var(--neumorphism-border-color);
 	}
 
 	h2 {
@@ -173,7 +150,7 @@
 	}
 
 	label {
-    	display: block;
+    	display: flex;
 		position: relative;
 		line-height: 1.2;
 		padding: 0.5em 2.5em 0.5em 0.5em;
@@ -187,11 +164,16 @@
 		border: 1px solid var(--neumorphism-border-color);
 	}
 
+	span {
+		margin-left: 10px;
+	}
+
 	.done {
 		border: 1px solid hsl(240, 8%, 90%);
 		backdrop-filter: blur(16px) saturate(180%);
 		-webkit-backdrop-filter: blur(16px) saturate(180%);
-		background-color: var(--success-bg);
+		color: rgb(221, 221, 221);
+		background-color: var(--done-bg);
 		border: 1px solid var(--neumorphism-border-color);
 	}
 
