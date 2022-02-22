@@ -8,11 +8,11 @@
 
 :root {
   --white: rgba(248, 248, 248, 0.8);
-  --success: rgba(44, 248, 160, 0.5);
 
   --text-color: rgba(33, 33, 33, 0.75);
-  --success-bg: var(--success);
-  --neumorphism-bg: rgba(255, 255, 255, 0.5);
+  --success-bg: rgba(117, 255, 195, 0.8);
+  --done-bg: rgba(78, 97, 236, 0.6);
+  --neumorphism-bg: rgba(255, 255, 255, 0.6);
   --neumorphism-border-color: rgba(209, 213, 219, 0.3);
 }
 
@@ -27,4 +27,18 @@ body {
   min-height: 100vh;
   background: url("/public/main-bg.jpg") no-repeat center;
   background-size: cover;
+}
+
+:focus {
+  outline: none;
+}
+
+::placeholder {
+  opacity: 0.5;
+}
+
+::placeholder,
+.board > input,
+label {
+  color: var(--text-color);
 }
