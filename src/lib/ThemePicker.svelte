@@ -6,12 +6,10 @@
 <script>
 	import { createEventDispatcher } from "svelte";
 	const dispatch = createEventDispatcher()
-	
-	/**
-	* @param {boolean} isDark
-	*/
-	function setDarkTheme(isDark) {
-		if (isDark) {
+
+	function toggle(event) {
+		const isChecked = event.target.checked
+		if (isChecked) {
 			localStorage.setItem("theme", "dark")
 			dispatch("getTheme", { isDark: true })
 			document.getElementsByTagName("body")[0].classList.add("dark")
@@ -24,34 +22,65 @@
 </script>
 
 <div class="container">
-	<input type="checkbox" />
-	<button on:click={()=> setDarkTheme(false)}>Light</button>
-	<button on:click={()=> setDarkTheme(true)}>Dark</button>
+	<p>Light</p>
+	<label class="switch">
+		<input type="checkbox" on:change={toggle} />
+		<span class="slider"></span>
+	</label>
+	<p>Dark</p>
 </div>
 
 <style>
-	
-	input {
-		position: relative;
-		-webkit-appearance: none;
-		appearance: none;
-		width: 4em;
-		height: 2em;
-		border-radius: 24px;
-		background-color: red;
-	}
-	
-	input::before {
-		content: "";
-		position: absolute;
-		left: 0;
-		width: 20px;
-		height: 20px;
-		border-radius: 50%;
-		background-color: blue;
-	}
-
 	.container {
 		display: flex;
+		align-items: center;
+		margin-top: 10px;
+	}
+	
+	.switch {
+		position: relative;
+		background-color: red;
+		width: 3.4em;
+		height: 2em;
+		border-radius: 24px;
+		overflow: hidden;
+		margin: 0 10px;
+	}
+	
+	input {
+		opacity: 0;
+		width: 100%;
+		height: 100%;
+		-webkit-appearance: none;
+		appearance: none;
+		transition: 0.3s;
+	}
+
+	.slider {
+		position: absolute;
+		cursor: pointer;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: #ccc;
+		transition: 0.3s;
+	}
+
+	.slider::before {
+		position: absolute;
+		content: "";
+		width: 25px;
+		height: 25px;
+		border-radius: 50%;
+		top: 50%;
+		transform: translate(2.5px, -50%);
+		background-color: red;
+		transition: 0.3s;
+	}
+
+	input:checked + .slider::before {
+		transform: translate(100%, -50%);
+		transition: 0.3s;
 	}
 </style>
