@@ -24,11 +24,33 @@
 </script>
 
 <div class="container">
+	<input type="checkbox" />
 	<button on:click={()=> setDarkTheme(false)}>Light</button>
 	<button on:click={()=> setDarkTheme(true)}>Dark</button>
 </div>
 
 <style>
+	
+	input {
+		position: relative;
+		-webkit-appearance: none;
+		appearance: none;
+		width: 4em;
+		height: 2em;
+		border-radius: 24px;
+		background-color: red;
+	}
+	
+	input::before {
+		content: "";
+		position: absolute;
+		left: 0;
+		width: 20px;
+		height: 20px;
+		border-radius: 50%;
+		background-color: blue;
+	}
+
 	.container {
 		display: flex;
 	}
