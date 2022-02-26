@@ -61,11 +61,18 @@
 		input.value = '';
 	}
 
+	/**
+	* @param {Object} todo
+	*/
 	function remove(todo) {
 		todos = todos.filter(t => t !== todo);
     	setTodos(todos)
 	}
 
+	/**
+	* @param {{ done: any; }} todo
+	* @param {boolean} done
+	*/
 	function mark(todo, done) {
 		todo.done = done;
 		remove(todo);
