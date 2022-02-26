@@ -31,6 +31,11 @@
 </div>
 
 <style>
+
+	p {
+		color: var(--white);
+	}
+	
 	.container {
 		display: flex;
 		align-items: center;
@@ -39,7 +44,6 @@
 	
 	.switch {
 		position: relative;
-		background-color: red;
 		width: 3.4em;
 		height: 2em;
 		border-radius: 24px;
@@ -63,7 +67,10 @@
 		left: 0;
 		right: 0;
 		bottom: 0;
-		background-color: #ccc;
+		backdrop-filter: blur(16px) saturate(180%);
+		-webkit-backdrop-filter: blur(16px) saturate(180%);
+		background-color: var(--neumorphism-bg);
+		border-radius: 12px;
 		transition: 0.3s;
 	}
 
@@ -74,8 +81,11 @@
 		height: 25px;
 		border-radius: 50%;
 		top: 50%;
-		transform: translate(2.5px, -50%);
-		background-color: red;
+		transform: translate(3px, -50%);
+		backdrop-filter: blur(16px) saturate(180%);
+		-webkit-backdrop-filter: blur(16px) saturate(180%);
+		background-color: var(--neumorphism-bg-revert);
+		border-radius: 50%;
 		transition: 0.3s;
 	}
 

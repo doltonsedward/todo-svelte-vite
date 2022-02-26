@@ -96,7 +96,7 @@
 	<InputUser on:keydown={e => e.key === 'Enter' && add(e.target)} />
 
 	<div class="section-left">
-		<h2>todo</h2>
+		<h2>Todo</h2>
 		{#each todos.filter(t => !t.done) as todo (todo.id)}
 			<label
 				in:receive="{{key: todo.id}}"
@@ -117,7 +117,7 @@
 	</div>
 
 	<div class="section-right">
-		<h2>done</h2>
+		<h2>Done</h2>
 		{#each todos.filter(t => t.done) as todo (todo.id)}
 			<label
 				class="done"
