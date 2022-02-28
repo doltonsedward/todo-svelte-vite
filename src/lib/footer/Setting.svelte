@@ -7,6 +7,7 @@
 <style>
     img {
         width: 2em;
+        cursor: pointer;
     }
     
     .active {
