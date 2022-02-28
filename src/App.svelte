@@ -6,7 +6,7 @@
 	import InputCheckbox from "./lib/input/InputCheckbox.svelte";
 	import ThemePicker from "./lib/ThemePicker.svelte";
 	import Title from './lib/Title.svelte';
-	
+	import Footer from './lib/footer/Footer.svelte';
 
 	let uid = 1;
 
@@ -90,15 +90,23 @@
 	function handleGetTheme(event) {
 		isDarkTheme = event.detail.isDark
 	}
+
+	let editable = false
+
+	/**
+	* @param {{ detail: { editText: boolean; }; }} event
+	*/
+	function handleDevMode(event) {
+		editable = event.detail.editText
+	}
 </script>
 
 <div class="board">
 	<ThemePicker on:getTheme={handleGetTheme} />
-	
 	<InputUser on:keydown={e => e.key === 'Enter' && add(e.target)} />
 
 	<div class="section-left">
-		<Title name="Todo" />
+		<Title {editable} name="Todo" />
 		{#each todos.filter(t => !t.done) as todo (todo.id)}
 			<label
 				in:receive="{{key: todo.id}}"
@@ -119,7 +127,7 @@
 	</div>
 
 	<div class="section-right">
-		<Title name="Done" />
+		<Title {editable} name="Done" />
 		{#each todos.filter(t => t.done) as todo (todo.id)}
 			<label
 				class="done"
@@ -140,6 +148,7 @@
 		{/each}
 	</div>
 </div>
+<Footer on:devmode={handleDevMode} />
 
 <style>
 	.board {

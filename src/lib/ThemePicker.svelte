@@ -3,6 +3,7 @@
 	if (currentTheme) 
 	document.getElementsByTagName("body")[0].classList.add(currentTheme)
 </script>
+
 <script>
 	import { createEventDispatcher } from "svelte";
 	const dispatch = createEventDispatcher()
