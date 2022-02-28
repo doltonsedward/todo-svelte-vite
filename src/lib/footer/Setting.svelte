@@ -1,7 +1,19 @@
-<button on:click>Setting</button>
+<script>
+    export let isSettingOpen = false
+</script>
+
+<img class:active={isSettingOpen} on:click src="icon/gear-solid.svg" alt="setting" />
 
 <style>
-    button {
-        transform: translateY(-120%);
+    img {
+        width: 2em;
+    }
+    
+    .active {
+        transform: translateY(0%) rotate(180deg);
+    }
+
+    :not(.active) {
+        transform: translateY(100%);
     }
 </style>
