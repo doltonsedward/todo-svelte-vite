@@ -16,48 +16,45 @@
 
 <div class="container">
     {#if isInputActive} 
-        <input bind:value={name} on:keypress={handleEnterInput} />
+        <input class="input__data" bind:value={name} on:keypress={handleEnterInput} />
     {:else}
         <h2>{name}</h2>
     {/if}
-    <button on:click={()=> isInputActive = !isInputActive}>
-        <div></div>
-    </button>
+    <div class="icon__edit" on:click={()=> isInputActive = !isInputActive}>
+        <img src="icon/edit-solid.svg" alt="edit">
+    </div>
 </div>
 
 
 <style>
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 0 0.5em 0;
+    }
+    
     h2 {
+        width: 5em;
         display: inline;
 		color: whitesmoke;
 		font-size: 2em;
 		font-weight: 200;
 		user-select: none;
-		margin: 0 0 0.5em 0;
 	}
 
-    button{
-        position: relative;
-        -webkit-appearance: none;
-        appearance: none;
-        margin: 0;
-        font: inherit;
-        width: 1.30em;
-        height: 1.30em;
-        border: 1px solid #767e7d;
-        border-radius: 50%;
+    .input__data {
+        color: var(--default-text-color);
+        width: 5em;
+        font-size: 2em;
+        border-bottom: 1px solid var(--neumorphism-bg-revert);
     }
 
-    button div {
-        position: absolute;
-        content: "";
-        width: 100%;
-        height: 100%;
-        clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
-        transform: scale(0) translate(-50%, -50%);
-        transform-origin: bottom left;
-        transition: 120ms transform ease-in-out;
-        box-shadow: inset 1em 1em white;
-        background-color: CanvasText;
+    .icon__edit {
+        display: grid;
+        place-items: center;
+        position: relative;
+        width: 8%;
+        height: 8%;
     }
 </style>
