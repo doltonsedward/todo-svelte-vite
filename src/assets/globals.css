@@ -9,6 +9,7 @@
 :root {
   --white: rgba(248, 248, 248, 0.8);
 
+  --default-text-color: var(--white);
   --text-color: rgba(33, 33, 33, 0.75);
   --success-bg: rgba(117, 255, 195, 0.8);
   --done-bg: rgba(78, 97, 236, 0.6);
@@ -43,4 +44,51 @@ body {
 .board > input,
 label {
   color: var(--text-color);
+}
+
+input {
+  font-family: "Poppins";
+  background-color: transparent;
+  border: none;
+}
+
+.checkbox {
+  position: relative;
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+  font: inherit;
+  width: 1.3em;
+  height: 1.3em;
+  border: 1px solid #767e7d;
+  border-radius: 50%;
+  transform: translateY(-0.075em);
+}
+
+.checkbox::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  transform: scale(0) translate(-50%, -50%);
+  transform-origin: bottom left;
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--default-text-color);
+  background-color: CanvasText;
+}
+
+.checkbox:checked {
+  background-color: #01e1c4;
+}
+
+.checkbox:checked::before {
+  transform: scale(1) translate(-50%, -50%);
+}
+
+.checkbox:disabled {
+  color: #959495;
+  cursor: not-allowed;
 }
