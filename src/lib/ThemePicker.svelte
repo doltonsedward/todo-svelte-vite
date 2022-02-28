@@ -1,10 +1,9 @@
-<script context="module">
-	const currentTheme = localStorage.getItem("theme");
-	if (currentTheme) 
-	document.getElementsByTagName("body")[0].classList.add(currentTheme)
-</script>
-
 <script>
+	const currentTheme = localStorage.getItem("theme");
+	let isDarkTheme = (currentTheme === "dark")
+	
+	if (currentTheme) document.getElementsByTagName("body")[0].classList.add(currentTheme)
+	
 	import { createEventDispatcher } from "svelte";
 	const dispatch = createEventDispatcher()
 
@@ -25,7 +24,7 @@
 <div class="container">
 	<p>Light</p>
 	<label class="switch">
-		<input type="checkbox" on:change={toggle} />
+		<input type="checkbox" checked={isDarkTheme} on:change={toggle} />
 		<span class="slider"></span>
 	</label>
 	<p>Dark</p>
