@@ -5,6 +5,8 @@
 	import InputUser from "./lib/input/InputUser.svelte";
 	import InputCheckbox from "./lib/input/InputCheckbox.svelte";
 	import ThemePicker from "./lib/ThemePicker.svelte";
+	import Title from './lib/Title.svelte';
+	
 
 	let uid = 1;
 
@@ -96,7 +98,7 @@
 	<InputUser on:keydown={e => e.key === 'Enter' && add(e.target)} />
 
 	<div class="section-left">
-		<h2>Todo</h2>
+		<Title name="Todo" />
 		{#each todos.filter(t => !t.done) as todo (todo.id)}
 			<label
 				in:receive="{{key: todo.id}}"
@@ -117,7 +119,7 @@
 	</div>
 
 	<div class="section-right">
-		<h2>Done</h2>
+		<Title name="Done" />
 		{#each todos.filter(t => t.done) as todo (todo.id)}
 			<label
 				class="done"
@@ -146,14 +148,6 @@
 		grid-gap: 1em;
 		max-width: 36em;
 		margin: 0 auto;
-	}
-
-	h2 {
-		color: whitesmoke;
-		font-size: 2em;
-		font-weight: 200;
-		user-select: none;
-		margin: 0 0 0.5em 0;
 	}
 
 	label {
