@@ -52,6 +52,12 @@ input {
   border: none;
 }
 
+.d-flex-responsive {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 .checkbox {
   position: relative;
   -webkit-appearance: none;
