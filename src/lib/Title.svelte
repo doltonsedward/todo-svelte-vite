@@ -58,10 +58,16 @@
         width: 8%;
         height: 8%;
     }
-
-    img { display: none }
-
+    
+    img { 
+        transform: scale(0.8) translateY(15px);
+        opacity: 0;
+        cursor: pointer;
+    }
+    
     .active {
-        display: block;
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        transition: 120ms transform opacity ease-in-out;
     }
 </style>
