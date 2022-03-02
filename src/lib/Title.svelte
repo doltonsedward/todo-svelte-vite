@@ -1,5 +1,6 @@
 <script>
-    export let name = ""
+    export let name = "";
+    export let editable = false;
 
     let isInputActive
 
@@ -21,7 +22,7 @@
         <h2>{name}</h2>
     {/if}
     <div class="icon__edit" on:click={()=> isInputActive = !isInputActive}>
-        <img src="icon/edit-solid.svg" alt="edit">
+        <img class:active={editable} src="icon/edit-solid.svg" alt="edit">
     </div>
 </div>
 
@@ -56,5 +57,17 @@
         position: relative;
         width: 8%;
         height: 8%;
+    }
+    
+    img { 
+        transform: scale(0.8) translateY(15px);
+        opacity: 0;
+        cursor: pointer;
+    }
+    
+    .active {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        transition: 120ms transform opacity ease-in-out;
     }
 </style>
