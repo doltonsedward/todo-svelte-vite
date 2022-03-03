@@ -23,7 +23,7 @@
         <div class="container" class:active={isSettingOpen}>
             <div class="d-flex-responsive" on:click={handleDispatch}>
                 <p>Edit Text</p>
-                <input class="checkbox" type=checkbox />
+                <input class="checkbox" bind:checked={editText} type=checkbox />
             </div>
         </div>
     </div>
